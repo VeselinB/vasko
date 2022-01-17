@@ -1,5 +1,5 @@
 $app-name:  dynamic( 'newApp' );
-$image-search-path: '/Users/veselinb/newP/newapp/build/development/newApp/desktop/resources';
+$image-search-path: 'C:/Users/veselin.budinov/Desktop/extEff/senchaExtJs/build/development/newApp/desktop/resources';
 $theme-name:  dynamic( 'theme-material' );
 $include-ext-abstractcomponent: dynamic(true);;
 $include-ext-abstractmanager: dynamic(true);;
@@ -1390,7 +1390,7 @@ $relative-image-path-for-uis: $theme-material-resource-path;
 @import '../../../../../node_modules/@sencha/ext-modern-theme-material/sass/src/grid/plugin/HeaderReorder';
 @import '../../../../../node_modules/@sencha/ext-modern-theme-material/sass/src/tab/Bar';
 
-/* including scss file adjacent to ../../../../../app/desktop/src/view/image/header/HeaderView.js */
+/* including scss file adjacent to ..\..\..\..\..\app\desktop\src\view\image\header\HeaderView.js */
 $default-resource-root: '' !default;
 $default-resource-path: 'images' !default;
 $current-package: false;
@@ -1398,7 +1398,7 @@ $current-resource-root: $default-resource-root;
 $relative-image-path-for-uis: $default-resource-path;
 @import '../../../../../app/desktop/src/view/image/header/HeaderView';
 
-/* including scss file adjacent to ../../../../../app/desktop/src/view/image/Image.js */
+/* including scss file adjacent to ..\..\..\..\..\app\desktop\src\view\image\Image.js */
 $default-resource-root: '' !default;
 $default-resource-path: 'images' !default;
 $current-package: false;
@@ -1406,7 +1406,7 @@ $current-resource-root: $default-resource-root;
 $relative-image-path-for-uis: $default-resource-path;
 @import '../../../../../app/desktop/src/view/image/Image';
 
-/* including scss file adjacent to ../../../../../app/desktop/src/view/user/User.js */
+/* including scss file adjacent to ..\..\..\..\..\app\desktop\src\view\user\User.js */
 $default-resource-root: '' !default;
 $default-resource-path: 'images' !default;
 $current-package: false;
@@ -1414,7 +1414,7 @@ $current-resource-root: $default-resource-root;
 $relative-image-path-for-uis: $default-resource-path;
 @import '../../../../../app/desktop/src/view/user/User';
 
-/* including scss file adjacent to ../../../../../app/desktop/src/view/user/header/HeaderView.js */
+/* including scss file adjacent to ..\..\..\..\..\app\desktop\src\view\user\header\HeaderView.js */
 $default-resource-root: '' !default;
 $default-resource-path: 'images' !default;
 $current-package: false;
@@ -1422,7 +1422,7 @@ $current-resource-root: $default-resource-root;
 $relative-image-path-for-uis: $default-resource-path;
 @import '../../../../../app/desktop/src/view/user/header/HeaderView';
 
-/* including scss file adjacent to ../../../../../app/desktop/src/Application.js */
+/* including scss file adjacent to ..\..\..\..\..\app\desktop\src\Application.js */
 $default-resource-root: '' !default;
 $default-resource-path: 'images' !default;
 $current-package: false;

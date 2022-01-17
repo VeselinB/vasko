@@ -11,6 +11,7 @@ Ext.define('newApp.view.user.dialog.UserDialogControler', {
             // debugger;
             // let user = new Ext.create("newApp.model.User", { id })
             const record = form.getRecord()
+            debugger
             form.fillRecord(record);
             // user.set("name", form.getValues().name)
             // user.set("phone", form.getValues().phone)
@@ -18,10 +19,10 @@ Ext.define('newApp.view.user.dialog.UserDialogControler', {
             record.save(
                 {
                     success: function () {
-                        debugger;
-                         Ext.StoreMgr.lookup("usersStore").load()
+                        // debugger;
+                        //  Ext.StoreMgr.lookup("usersStore").load()
          
-                        this.getView().close()
+                        // this.getView().close()
                     }.bind(this)
                 }
             )
