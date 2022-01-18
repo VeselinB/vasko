@@ -1,2 +1,2 @@
 // @tag full-page
-// @require C:\Users\veselin.budinov\Desktop\extEff\senchaExtJs\app.js
+// @require /Users/veselinb/newP/vasko/vasko/app.js

@@ -1,1 +1,1 @@
-cache_path = 'C:\Users\veselin.budinov\Desktop\extEff\senchaExtJs/build/.sass-cache'
+cache_path = '/Users/veselinb/newP/vasko/vasko/build/.sass-cache'
