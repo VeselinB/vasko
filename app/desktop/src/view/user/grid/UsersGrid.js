@@ -3,12 +3,13 @@ Ext.define('newApp.view.user.grid.Grid', {
     xtype: 'usersgridview',
 
     grouped: false,
-    id:"usersGrid",
+    id: 'usersGrid',
     plugins: {
-    //    pagingtoolbar: true,
-      
+
+        pagingtoolbar: true,
+
     },
-  
+
     columns: [
         {
             text: 'Id',
@@ -41,9 +42,9 @@ Ext.define('newApp.view.user.grid.Grid', {
             flex: 1,
 
             cell: {
-                xtype: "widgetcell",
+                xtype: 'widgetcell',
                 widget: {
-                    xtype: "button",
+                    xtype: 'button',
 
                     text: '',
 
@@ -60,10 +61,10 @@ Ext.define('newApp.view.user.grid.Grid', {
                         }, {
                             text: 'Delete',
                             iconCls: 'x-fa fa-trash',
-                            handler: "deleteUser",
+                            handler: 'deleteUser',
 
 
-                        },]
+                        }, ]
 
                     },
 
@@ -71,14 +72,14 @@ Ext.define('newApp.view.user.grid.Grid', {
             }
 
         },
-        
-        
+
+
     ],
- 
-    listeners:{
-        select: function(){
-       this._plugins[0]._totalPages=10
-            console.log(this)
+
+    listeners: {
+        select: function () {
+            this._plugins[0]._totalPages = 10;
+            console.log(this);
 
             // Ext.StoreManager.lookup('usersStore').totalCount=10
             // console.log( Ext.StoreManager.lookup('usersStore'))
@@ -87,6 +88,6 @@ Ext.define('newApp.view.user.grid.Grid', {
 
         }
     }
-    
-  
+
+
 });

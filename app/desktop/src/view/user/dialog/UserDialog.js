@@ -1,35 +1,51 @@
 Ext.define('newApp.view.user.dialog.UserDialog', {
     extend: 'Ext.window.Window',
-    xtype: "userDialog",
+    xtype: 'userDialog',
     modal: true,
-    title: "Edit user",
-    controller:"userDialogController",
-
+    title: 'Edit user',
+    bind: {
+        title: '{title}'
+    },
+    controller: 'userDialogController',
+    viewModel: 'usersdialogviewmodel',
 
     maximizable: false,
 
     items: [
         {
-            xtype: "userForm",
+            xtype: 'userForm',
 
 
         }
     ],
     buttons: [
         {
-            text: "Cancel",
+            text: 'Cancel',
             handler: function () {
-                this.up('userDialog').destroy()
+                this.up('userDialog').destroy();
+            }
+            // TODO test with this / bind
+
+        }, 
+        {
+
+
+            text: 'SAVE',
+            handler: 'setEditedData',
+            bind: {
+                hidden: '{!editMode}'
             }
 
-        }, {
-
-
-            text: 'OK',
-            handler: "setEditedData"
-
-
-            
         },
-    ],
-})
+        {
+
+
+            text: 'ADD',
+            handler: 'saveUser',
+            bind: {
+                hidden: '{editMode}'
+            }
+
+        }
+    ]
+});

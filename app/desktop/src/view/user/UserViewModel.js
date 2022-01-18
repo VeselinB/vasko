@@ -1,21 +1,16 @@
 Ext.define('newApp.view.user.UserViewModel', {
-	extend: 'Ext.app.ViewModel',
-	alias: 'viewmodel.usersviewmodel',
+    extend: 'Ext.app.ViewModel',
+    alias: 'viewmodel.usersviewmodel',
 
-	stores: {
-		usersStore: {
-			type: 'users',
-			listeners: {
-				load: function (store, data, success, something) {
-				//	store.totalCount = something._response.getAllResponseHeaders()["x-total-count"];
-					Ext.fireEvent('refreshtoolbar');
-				}
-			}
-		}
-	},
+    stores: {
+        usersStore: {
+            type: 'users',
+			
+        }
+    },
 
-	data: {
-		form:{}, // TODO Check and remove
-		title:"Users"
-	}
+    data: {
+		
+        title: 'Users'
+    }
 });

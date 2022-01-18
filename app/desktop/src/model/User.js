@@ -2,16 +2,31 @@ Ext.define('newApp.model.User', {
     extend: 'Ext.data.Model',
 
     fields: [
-        { name: 'name', type: 'string' }, 'email', 'phone', 'id'
+        {
+            name: 'name',
+            type: 'string'
+        },
+        {
+            name: 'email',
+            type: 'string'
+        },
+        {
+            name: 'phone',
+            // type: 'string'
+        },
+        {
+            name: 'id',
+            type: 'number'
+        }
     ],
+
     proxy: {
         type: 'rest',
-        // type: 'ajax',
-        url: "http://localhost:3000/users",
-        // extraParams: { 'providedFieldsOnly': true },
-        writer: {
-            writeAllFields: false // use extra param providedFieldsOnly=true when making put request
-        }
 
-    },
+        url: 'http://localhost:3000/items',
+
+        writer: {
+            writeAllFields: true
+        }
+    }
 });

@@ -1,41 +1,27 @@
 Ext.define('newApp.store.Users', {
     extend: 'Ext.data.Store',
     alias: 'store.users',
-
-    fields: [
-        'name',
-        'email',
-        'phone'
-    ],
+    model: 'newApp.model.User',
+  
 
     storeId: 'usersStore',
 
     proxy: {
         type: 'rest',
         // type: 'ajax',
-        url: "http://localhost:3000/users",
+        url: 'http://localhost:3000/items',
         limitParam: '_limit',
         pageParam: '_page',
         startParam: '_start',
         reader: {
             type: 'json',
-            rootProperty: 'users',
-         //   totalProperty: 'totalCount'
+            rootProperty: 'items',
+            totalProperty: 'totalCount'
         
         }
     },
-    pageSize: 12,
+    pageSize: 5,
     autoLoad: true,
-    listeners: {
-        load: function(a,b,c,d,f){
-          // this.totalCount=10;
-// console.log(Ext.getCmp("usersGrid").down('pagingtoolbar').doRefresh())
-      // this.pagingToolbar.onLoad();
-           // console.log(this)
-        }
-    }
-        
-
 
 
 });

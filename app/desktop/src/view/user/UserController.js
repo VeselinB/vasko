@@ -1,3 +1,4 @@
+
 Ext.define('newApp.view.user.UserController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.userscontroller',
@@ -13,29 +14,31 @@ Ext.define('newApp.view.user.UserController', {
     },
 
     deleteUser: function (button) {
-        let dialog = Ext.create({
+        const dialog = Ext.create({
             xtype: 'dialog',
-            html: "Are you sure?",
+            html: 'Are you sure?',
             buttons: [
                 {
-                    text: "Cancel",
+                    text: 'Cancel',
                     handler: function () {
-                        dialog.destroy()
+                        dialog.destroy();
                     }
                 },
                 {
-                    text: "Ok",
+                    text: 'Ok',
 
 
                     cls: 'warn',
 
                     handler: function () {
-                        let id = button.up('gridrow').getRecord().get('id');
-                        let user = new Ext.create("newApp.model.User", { id });
+                        //  debugger
+                        const id = button.up('gridrow').getRecord().get('id');
+                     
+                        const user = new Ext.create('newApp.model.User', { id });
                         user.erase({
                             success: function () {
 
-                                Ext.StoreMgr.lookup("usersStore").load();
+                                Ext.StoreMgr.lookup('usersStore').reload();
                                 dialog.destroy();
                             }
                         });
@@ -43,143 +46,145 @@ Ext.define('newApp.view.user.UserController', {
                     }
                 }
             ]
-        })
-        dialog.show()
+        });
+        dialog.show();
 
     },
 
     createNewUser: function () {
-        let form = new Ext.create('newApp.view.user.form.UserForm');
-        let dialog = Ext.create({
-            viewModel: "usersviewmodel",
-            xtype: 'dialog',
-            title: "New user",
+        //const form = new Ext.create('newApp.view.user.form.UserForm');
+        const dialog = new Ext.create('newApp.view.user.dialog.UserDialog');
+        // const dialog = Ext.create({
+        //     viewModel: 'usersviewmodel',
+        //     xtype: 'dialog',
+        //     title: 'New user',
 
-            maximizable: false,
+        //     maximizable: false,
 
-            items: [
-                form
-            ],
+        //     items: [
+        //         form
+        //     ],
 
-            buttons: [
-                {
-                    text: "Cancel",
-                    handler: function () {
-                        dialog.destroy()
-                    }
+        //     buttons: [
+        //         {
+        //             text: 'Cancel',
+        //             handler: function () {
+        //                 dialog.destroy();
+        //             }
 
-                }, {
-                    id: "btnid",
-                    // disabled: true,
+        //         }, {
+        //             id: 'btnid',
+        //             text: 'OK',
+        //             handler: function () {
+        //                 if (form.validate()) {
+                          
+        //                     const user = new Ext.create('newApp.model.User', {
+        //                         ...form.getValues()
+        //                     });
+        //                     delete user.id;
+        //                     delete user.data.id;
+        //                     user.save(
+        //                         {
+        //                             success: function () {
+        //                                 //  debugger;
+        //                                 Ext.StoreMgr.lookup('usersStore').load(
+        //                                     // function(records, operation, success) {
+        //                                     //     console.log('loaded records');
+        //                                     // }
+        //                                 );
+                                    
+        //                                 dialog.close();
+        //                             }
+        //                         }
+        //                     );
+        //                 }
+                    
 
-                    text: 'OK',
-                    handler: function () {
-                        if (form.validate()) {
-                            // console.log(form.getValues())
-                            let user = new Ext.create("newApp.model.User", {
-                                ...form.getValues()
-                            })
-                            delete user.id;
-                            delete user.data.id;
-                            user.save(
-                                {
-                                    success: function () {
-                                        Ext.StoreMgr.lookup("usersStore").load()
-                                        dialog.destroy()
-                                    }
-                                }
-                            )
-                        }
+        //             }
+        //         }
+        //     ]
 
 
-                        //  debugger;
-                        // console.log(     button.up('dialog').down('userform'))
+        // });
+      
+        dialog.getViewModel().set('editMode', false);
+        dialog.getViewModel().set('title', 'Add User');
 
-
-                    }
-                },
-            ],
-
-
-
-        });
-
-        dialog.show()
+        dialog.show();
 
     },
     
     editUserData: function (button) {
         // debugger;
-       // let form = new Ext.create('newApp.view.user.form.UserForm');
-        let dialog=new Ext.create('newApp.view.user.dialog.UserDialog')
-    //     let dialog = Ext.create({
-    //         viewModel: "usersviewmodel",
-    //         xtype: 'dialog',
-    //         title: "Edit user",
+        // let form = new Ext.create('newApp.view.user.form.UserForm');
+        const dialog = new Ext.create('newApp.view.user.dialog.UserDialog');
+        //     let dialog = Ext.create({
+        //         viewModel: "usersviewmodel",
+        //         xtype: 'dialog',
+        //         title: "Edit user",
 
-    //         maximizable: false,
+        //         maximizable: false,
 
-    //         items: [
-    //             {
-    //                 xtype: "userForm",
+        //         items: [
+        //             {
+        //                 xtype: "userForm",
                  
                   
-    //             }
-    //         ],
+        //             }
+        //         ],
 
-    //         buttons: [
-    //             {
-    //                 text: "Cancel",
-    //                 handler: function () {
-    //                     dialog.destroy()
-    //                 }
+        //         buttons: [
+        //             {
+        //                 text: "Cancel",
+        //                 handler: function () {
+        //                     dialog.destroy()
+        //                 }
 
-    //             }, {
+        //             }, {
 
 
-    //                 text: 'OK',
-    //                 handler: function () {
-    //    // console.log(  this.up('dialog').down('userForm'))
+        //                 text: 'OK',
+        //                 handler: function () {
+        //    // console.log(  this.up('dialog').down('userForm'))
                        
-    //                     if (this.up('dialog').down('userForm').validate()) {
-    //                         let id = button.up('gridrow').getRecord().get('id');
+        //                     if (this.up('dialog').down('userForm').validate()) {
+        //                         let id = button.up('gridrow').getRecord().get('id');
 
-    //                         let user = new Ext.create("newApp.model.User", { id })
-    //                         user.set("name", form.getValues().name)
-    //                         user.set("phone", form.getValues().phone)
-    //                         user.set("email", form.getValues().email)
-    //                         user.save(
-    //                             {
-    //                                 success: function () {
-    //                                     Ext.StoreMgr.lookup("usersStore").load()
-    //                                     dialog.destroy()
-    //                                 }
-    //                             }
-    //                         )
-    //                     }
-
-
-    //                 }
-    //             },
-    //         ],
+        //                         let user = new Ext.create("newApp.model.User", { id })
+        //                         user.set("name", form.getValues().name)
+        //                         user.set("phone", form.getValues().phone)
+        //                         user.set("email", form.getValues().email)
+        //                         user.save(
+        //                             {
+        //                                 success: function () {
+        //                                     Ext.StoreMgr.lookup("usersStore").load()
+        //                                     dialog.destroy()
+        //                                 }
+        //                             }
+        //                         )
+        //                     }
 
 
+        //                 }
+        //             },
+        //         ],
 
-    //     });
 
-    //     // console.log(  this.lookupReference("userform").loadRecord(button.up('gridrow').getRecord()))
-    //     //    form.loadRecord( button.up('gridrow').getRecord())
+        //     });
+
+        //     // console.log(  this.lookupReference("userform").loadRecord(button.up('gridrow').getRecord()))
+        //     //    form.loadRecord( button.up('gridrow').getRecord())
         // dialog.getViewModel().set('form', button.up('gridrow').getRecord());
         // debugger;
         const record = button.up('gridrow').getRecord();
         const form = dialog.down('userForm');
-       
+      
+        dialog.getViewModel().set('editMode', true);
+        dialog.getViewModel().set('title', 'Edit User');
         form.setRecord(record);
         form.setValues(record);
         // dialog.getViewModel().set('selectedUserId', button.up('gridrow').getRecord());
-        dialog.show()
-
-
+        dialog.show();
 
 
     },

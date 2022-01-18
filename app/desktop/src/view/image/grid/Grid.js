@@ -7,10 +7,12 @@ Ext.define('newApp.view.image.grid.Grid', {
     // store: { type: 'imagesStore' },
 
     grouped: false,
-    requires: ['Ext.grid.filters.Plugin'],
+
     scrollable: true,
     plugins: {
-        gridfilters: true
+ 
+        pagingtoolbar: true
+
     },
 
     itemConfig: {
@@ -27,13 +29,13 @@ Ext.define('newApp.view.image.grid.Grid', {
             text: 'Images',
             flex: 1,
             cell: {
-                xtype: "widgetcell",
+                xtype: 'widgetcell',
                 widget: {
-                    xtype: "image",
+                    xtype: 'image',
                     height: 100,
                     width: 100,
                     bind: {
-                        src: "{record.url}"
+                        src: '{record.url}'
                     }
                 }
             }
@@ -47,4 +49,4 @@ Ext.define('newApp.view.image.grid.Grid', {
 
         // },
     ]
-})
+});

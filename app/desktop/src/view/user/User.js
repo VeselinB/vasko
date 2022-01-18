@@ -4,9 +4,9 @@ Ext.define('newApp.view.user.User', {
 
     controller: { type: 'userscontroller' },
     viewModel: { type: 'usersviewmodel' },
-
+   
     requires: [
-    'Ext.layout.Fit'
+        'Ext.layout.Fit'
     ],
 
     layout: 'fit',
