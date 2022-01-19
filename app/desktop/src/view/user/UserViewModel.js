@@ -5,6 +5,7 @@ Ext.define('newApp.view.user.UserViewModel', {
     stores: {
         usersStore: {
             type: 'users',
+            //vesko
 			
         }
     },

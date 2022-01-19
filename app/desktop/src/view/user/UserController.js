@@ -1,14 +1,76 @@
 
 const selectedUsersIdsArray = [];
+
+// eslint-disable-next-line no-implicit-globals
+function sleepFor(sleepDuration) {
+    const now = new Date().getTime();
+    while (new Date().getTime() < now + sleepDuration) { /* Do nothing */ }
+}
+// eslint-disable-next-line no-implicit-globals
+let retry = 3;
+// eslint-disable-next-line no-implicit-globals
+function retryRemoveRecordFromBackend(id) {
+    retry--;
+    sleepFor(500);
+    Ext.Ajax.request({
+        url: `http://localhost:3000/items/${id}`,
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+
+        success: function () {
+
+            const index = Ext.StoreMgr.lookup('usersStore').find('id', id);
+
+            Ext.StoreManager.lookup('usersStore').removeAt(index);
+
+        },
+
+        failure: function () {
+            if (retry !== 0) {
+
+                retryRemoveRecordFromBackend(id, 3);
+
+            }
+        }
+
+    });
+}
+
 Ext.define('newApp.view.user.UserController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.userscontroller',
-
+    retryRemoveRecordFromBackend: function(id) {
+        retry--;
+        sleepFor(500);
+        Ext.Ajax.request({
+            url: `http://localhost:3000/items/${id}`,
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+    
+            success: function () {
+    
+                const index = Ext.StoreMgr.lookup('usersStore').find('id', id);
+    
+                Ext.StoreManager.lookup('usersStore').removeAt(index);
+    
+            },
+    
+            failure: function () {
+                if (retry !== 0) {
+    
+                    retryRemoveRecordFromBackend(id, 3);
+    
+                }
+            }
+    
+        });
+    },
     selectedUsersIds: function (checkcolumn, rowIndex, checked, record) {
         const id = record.id;
 
         if (checked) {
             selectedUsersIdsArray.push(id);
+
 
         } else {
             const index = selectedUsersIdsArray.indexOf(id);
@@ -25,7 +87,7 @@ Ext.define('newApp.view.user.UserController', {
 
     },
 
-    deleteAllSelsectedUsers: function() {
+    deleteAllSelsectedUsers: function () {
         const dialog = Ext.create({
             xtype: 'dialog',
             html: '<div style="font-size: 20px; color: red">More than one User are selected!</div> <br/>Are you sure?',
@@ -41,25 +103,35 @@ Ext.define('newApp.view.user.UserController', {
                     cls: 'warn',
 
                     handler: function () {
-
+                        debugger
+                        const tempArray = [...selectedUsersIdsArray];
                         selectedUsersIdsArray.forEach(id => {
                             const user = new Ext.create('newApp.model.User', { id });
-                            user.erase({
+                            return user.erase({
                                 success: function () {
-                
+                                    //debugger;
+                                    const index = tempArray.indexOf(id);
+                                    tempArray.splice(index, 1);
+
                                     Ext.StoreMgr.lookup('usersStore').reload();
-                                    dialog.destroy();
-                
+                                    if (tempArray.length === 0) {
+                                        dialog.destroy();
+                                    }
+
+                                },
+                                failure: function () {
+                                    retryRemoveRecordFromBackend(id);
                                 }
                             });
                         });
 
+                      
                     }
                 }
             ]
         });
         dialog.show();
-        
+
     },
     deleteUser: function (button) {
         const dialog = Ext.create({
