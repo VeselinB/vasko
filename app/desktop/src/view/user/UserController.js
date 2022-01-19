@@ -1,22 +1,22 @@
 
-const selectedRecordsArray = [];
+const selectedUsersIdsArray = [];
 Ext.define('newApp.view.user.UserController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.userscontroller',
 
-    selectedRecords: function (checkcolumn, rowIndex, checked, record) {
+    selectedUsersIds: function (checkcolumn, rowIndex, checked, record) {
         const id = record.id;
 
         if (checked) {
-            selectedRecordsArray.push(id);
+            selectedUsersIdsArray.push(id);
 
         } else {
-            const index = selectedRecordsArray.indexOf(id);
-            selectedRecordsArray.splice(index, 1);
+            const index = selectedUsersIdsArray.indexOf(id);
+            selectedUsersIdsArray.splice(index, 1);
 
         }
 
-        if (selectedRecordsArray.length !== 0) {
+        if (selectedUsersIdsArray.length !== 0) {
             this.getViewModel().set('deleteAllButtonDisabled', false);
         } else {
             this.getViewModel().set('deleteAllButtonDisabled', true);
@@ -25,7 +25,7 @@ Ext.define('newApp.view.user.UserController', {
 
     },
 
-    deleteAllSelsectedUsers: function () {
+    deleteAllSelsectedUsers: function() {
         const dialog = Ext.create({
             xtype: 'dialog',
             html: 'Are you sure?',
@@ -42,14 +42,14 @@ Ext.define('newApp.view.user.UserController', {
 
                     handler: function () {
 
-                        selectedRecordsArray.forEach(id => {
+                        selectedUsersIdsArray.forEach(id => {
                             const user = new Ext.create('newApp.model.User', { id });
                             user.erase({
                                 success: function () {
-
+                
                                     Ext.StoreMgr.lookup('usersStore').reload();
                                     dialog.destroy();
-
+                
                                 }
                             });
                         });
@@ -59,7 +59,7 @@ Ext.define('newApp.view.user.UserController', {
             ]
         });
         dialog.show();
-
+        
     },
     deleteUser: function (button) {
         const dialog = Ext.create({

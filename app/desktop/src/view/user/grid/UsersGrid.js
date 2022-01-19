@@ -17,7 +17,7 @@ Ext.define('newApp.view.user.grid.Grid', {
             dataIndex: 'active',
             width: 20,
             listeners:
-                { checkchange: 'selectedRecords' }
+                { checkchange: 'selectedUsersIds' }
 
         },
         {
