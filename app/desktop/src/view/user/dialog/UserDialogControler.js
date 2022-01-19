@@ -2,6 +2,42 @@ Ext.define('newApp.view.user.dialog.UserDialogControler', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.userDialogController',
 
+    deleteUser: function (button) {
+        const dialog = Ext.create({
+            xtype: 'dialog',
+            html: 'Are you sure?',
+            buttons: [
+                {
+                    text: 'Cancel',
+                    handler: function () {
+                        dialog.destroy();
+                    }
+                },
+                {
+                    text: 'Ok',
+                    cls: 'warn',
+
+                    handler: function () {
+                      
+                        const id = button.up('gridrow').getRecord().get('id');
+                       
+                        const user = new Ext.create('newApp.model.User', { id });
+                        user.erase({
+                            success: function () {
+
+                                Ext.StoreMgr.lookup('usersStore').reload();
+                                dialog.destroy();
+                                
+                            }
+                        });
+
+                    }
+                }
+            ]
+        });
+        dialog.show();
+
+    },
     setEditedData: function () {
         const form = this.getView().down('userForm');
 
@@ -21,11 +57,12 @@ Ext.define('newApp.view.user.dialog.UserDialogControler', {
             );
         }
     },
+
     saveUser: function () {
         const form = this.getView().down('userForm');
-     
+
         if (form.validate()) {
-                          
+
             const user = new Ext.create('newApp.model.User', {
                 ...form.getValues()
             });
@@ -34,19 +71,16 @@ Ext.define('newApp.view.user.dialog.UserDialogControler', {
             user.save(
                 {
                     success: function () {
-                        //  debugger;
-                        Ext.StoreMgr.get('usersStore').reload();
-                        Ext.StoreMgr.lookup('usersStore').load(
-                            // function(records, operation, success) {
-                            //     console.log('loaded records');
-                            // }
-                        );
-                                        
+
+                       
+                        Ext.StoreMgr.lookup('usersStore').load();
+
                         this.getView().close();
                     }.bind(this)
                 }
             );
         }
-        console.log('');
+      
     }
+
 });

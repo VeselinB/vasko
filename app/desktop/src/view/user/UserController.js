@@ -13,43 +13,6 @@ Ext.define('newApp.view.user.UserController', {
         // debugger;
     },
 
-    deleteUser: function (button) {
-        const dialog = Ext.create({
-            xtype: 'dialog',
-            html: 'Are you sure?',
-            buttons: [
-                {
-                    text: 'Cancel',
-                    handler: function () {
-                        dialog.destroy();
-                    }
-                },
-                {
-                    text: 'Ok',
-
-
-                    cls: 'warn',
-
-                    handler: function () {
-                        //  debugger
-                        const id = button.up('gridrow').getRecord().get('id');
-                     
-                        const user = new Ext.create('newApp.model.User', { id });
-                        user.erase({
-                            success: function () {
-
-                                Ext.StoreMgr.lookup('usersStore').reload();
-                                dialog.destroy();
-                            }
-                        });
-
-                    }
-                }
-            ]
-        });
-        dialog.show();
-
-    },
 
     createNewUser: function () {
         //const form = new Ext.create('newApp.view.user.form.UserForm');
@@ -106,6 +69,7 @@ Ext.define('newApp.view.user.UserController', {
 
 
         // });
+        
       
         dialog.getViewModel().set('editMode', false);
         dialog.getViewModel().set('title', 'Add User');
@@ -178,7 +142,7 @@ Ext.define('newApp.view.user.UserController', {
         // debugger;
         const record = button.up('gridrow').getRecord();
         const form = dialog.down('userForm');
-      
+       
         dialog.getViewModel().set('editMode', true);
         dialog.getViewModel().set('title', 'Edit User');
         form.setRecord(record);
