@@ -24,7 +24,7 @@ Ext.define('newApp.store.Users', {
         
         }
     },
-    pageSize: 12,
+    pageSize: 10,
     autoLoad: true,
    
 

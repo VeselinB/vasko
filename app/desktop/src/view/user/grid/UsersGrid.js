@@ -1,7 +1,7 @@
 Ext.define('newApp.view.user.grid.Grid', {
     extend: 'Ext.grid.Grid',
     xtype: 'usersgridview',
-    scrollable: true,
+    //scrollable: true,
     grouped: false,
     id: 'usersGrid',
     plugins: {
@@ -13,11 +13,12 @@ Ext.define('newApp.view.user.grid.Grid', {
     columns: [
         {
             xtype: 'checkcolumn',
-            text: 'Select',
+            text: '',
             dataIndex: 'active',
             width: 20,
             listeners:
-                { checkchange: 'selectedUsersIds' }
+                { checkchange: 'selectedUsersIds' },
+            
 
         },
         {
@@ -60,7 +61,7 @@ Ext.define('newApp.view.user.grid.Grid', {
                     menu: {
                         xtype: 'menu',
                         items: [{
-                            text: 'Edit',
+                            text: 'Edit this',
 
                             iconCls: 'x-fa fa-edit',
                             handler: 'editUserData',
@@ -73,7 +74,7 @@ Ext.define('newApp.view.user.grid.Grid', {
                             text: 'Delete This',
                             iconCls: 'x-fa fa-trash',
                             handler: 'deleteUser',
-                       
+
                         },
                         {
                             text: 'Delete All Selected',

@@ -28,7 +28,7 @@ Ext.define('newApp.view.user.UserController', {
     deleteAllSelsectedUsers: function() {
         const dialog = Ext.create({
             xtype: 'dialog',
-            html: 'Are you sure?',
+            html: '<div style="font-size: 20px; color: red">More than one User are selected!</div> <br/>Are you sure?',
             buttons: [
                 {
                     text: 'Cancel',
