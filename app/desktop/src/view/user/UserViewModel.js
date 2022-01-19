@@ -10,7 +10,7 @@ Ext.define('newApp.view.user.UserViewModel', {
     },
 
     data: {
-		
+        deleteAllButtonDisabled: true,
         title: 'Users'
     }
 });

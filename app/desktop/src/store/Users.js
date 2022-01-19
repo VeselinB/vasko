@@ -1,8 +1,12 @@
 Ext.define('newApp.store.Users', {
     extend: 'Ext.data.Store',
     alias: 'store.users',
-    model: 'newApp.model.User',
-  
+
+    fields: [
+        'name',
+        'email',
+        'phone'
+    ],
 
     storeId: 'usersStore',
 
@@ -20,8 +24,8 @@ Ext.define('newApp.store.Users', {
         
         }
     },
-    pageSize: 5,
+    pageSize: 12,
     autoLoad: true,
-
+   
 
 });

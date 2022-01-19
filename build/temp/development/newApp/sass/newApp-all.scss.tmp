@@ -831,7 +831,6 @@ $include-newapp-util-shared: dynamic(true);;
 $include-newapp-view-image-image: dynamic(true);;
 $include-newapp-view-image-imagecontroller: dynamic(true);;
 $include-newapp-view-image-imageviewmodel: dynamic(true);;
-$include-newapp-view-image-grid-grid: dynamic(true);;
 $include-newapp-view-image-header-headerview: dynamic(true);;
 $include-newapp-view-image-list-imagelist: dynamic(true);;
 $include-newapp-view-main-main: dynamic(true);;

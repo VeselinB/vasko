@@ -8,7 +8,7 @@ Ext.define('newApp.view.image.list.ImageList', {
    
     },
 
-    itemTpl: '<img src="{url}" alt="Girl in a jacket" width="100" height="100">',
+    itemTpl: '<img src="{url}"  width="100" height="100">',
     grouped: false,
 
     initialize: function() {

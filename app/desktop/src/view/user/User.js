@@ -2,9 +2,9 @@ Ext.define('newApp.view.user.User', {
     extend: 'Ext.Container',
     xtype: 'users',
 
-    controller: { type: 'userscontroller' },
-    viewModel: { type: 'usersviewmodel' },
-   
+    controller: 'userscontroller',
+    viewModel: 'usersviewmodel',
+    
     requires: [
         'Ext.layout.Fit'
     ],

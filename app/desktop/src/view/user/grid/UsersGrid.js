@@ -1,7 +1,7 @@
 Ext.define('newApp.view.user.grid.Grid', {
     extend: 'Ext.grid.Grid',
     xtype: 'usersgridview',
-
+    scrollable: true,
     grouped: false,
     id: 'usersGrid',
     plugins: {
@@ -11,6 +11,15 @@ Ext.define('newApp.view.user.grid.Grid', {
     },
 
     columns: [
+        {
+            xtype: 'checkcolumn',
+            text: 'Select',
+            dataIndex: 'active',
+            width: 20,
+            listeners:
+                { checkchange: 'selectedRecords' }
+
+        },
         {
             text: 'Id',
             dataIndex: 'id',
@@ -58,13 +67,23 @@ Ext.define('newApp.view.user.grid.Grid', {
                             // data: this
 
 
-                        }, {
-                            text: 'Delete',
+                        },
+
+                        {
+                            text: 'Delete This',
                             iconCls: 'x-fa fa-trash',
                             handler: 'deleteUser',
+                       
+                        },
+                        {
+                            text: 'Delete All Selected',
+                            iconCls: 'x-fa fa-trash',
+                            handler: 'deleteAllSelsectedUsers',
+                            bind: {
+                                disabled: '{deleteAllButtonDisabled}'
+                            }
 
-
-                        }, ]
+                        }]
 
                     },
 
@@ -75,19 +94,6 @@ Ext.define('newApp.view.user.grid.Grid', {
 
 
     ],
-
-    listeners: {
-        select: function () {
-            this._plugins[0]._totalPages = 10;
-            console.log(this);
-
-            // Ext.StoreManager.lookup('usersStore').totalCount=10
-            // console.log( Ext.StoreManager.lookup('usersStore'))
-            // console.log(Ext.StoreManager.lookup('usersStore').load())
-            // console.log( Ext.StoreManager.lookup('usersStore'))
-
-        }
-    }
 
 
 });
