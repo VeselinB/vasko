@@ -27,7 +27,7 @@ Ext.define('newApp.model.User', {
 
         writer: {
             writeAllFields: true
-        },
+        }
        
     }
 });
