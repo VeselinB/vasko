@@ -1,28 +1,27 @@
 
-let emailValidator = Ext.create('Ext.data.validator.Email');
+const emailValidator = Ext.create('Ext.data.validator.Email');
 
-Ext.define('newApp.view.user.form.UserForm',{
-    extend: "Ext.form.Panel",
-    xtype:"userForm",
-    reference:"userform", //TODO Should ne asked
+Ext.define('newApp.view.user.form.UserForm', {
+    extend: 'Ext.form.Panel',
+    xtype: 'userForm',
+    
     layout: {
         type: 'vbox',
         align: 'left'
     },
+    
     items: [
         {
-            // bind: {
-            //     value: '{form.name}',
-             
-            // },
+          
             xtype: 'textfield',
-            fieldLabel: 'Name',
+       
             name: 'name',
             labelAlign: 'top',
             label: 'Name',
             width: 265,
             allowBlank: false,
-           
+    
+            errorTarget: 'under',
             required: true,
             placeholder: 'Please Enter Something'
         },
@@ -34,11 +33,9 @@ Ext.define('newApp.view.user.form.UserForm',{
             labelAlign: 'top',
             width: 265,
             allowBlank: false,
-            // bind: {
-            //     value: '{form.email}'
-            // },
             required: true,
-          validators: [emailValidator],
+            validators: [emailValidator],
+            errorTarget: 'under',
 
 
         },
@@ -51,13 +48,21 @@ Ext.define('newApp.view.user.form.UserForm',{
             width: 265,
             allowBlank: false,
             required: true,
-            // bind: {
-            //     value: '!{form.phone}' ? '{form.phone}' : null
-            // },
+            validators: function (val) {
+                // remove non-numeric characters
+                 console.log(val);
+                const regex = /^[0-9]*$/;
+                console.log(val.match(regex));
+                const errorMessage = 'Must be a digit telephone number';
+                // if the numeric value is not 10 digits return an error message
+                return (val.match(regex) === null) ? errorMessage : true;
+            },
+            //validators: /^[0-9]*$/,
+            errorTarget: 'under',
 
         },
       
        
     ],
 
-})
+});

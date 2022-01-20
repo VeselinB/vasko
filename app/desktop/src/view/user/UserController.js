@@ -1,6 +1,7 @@
 
 const selectedUsersIdsArray = [];
 
+
 Ext.define('newApp.view.user.UserController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.userscontroller',
