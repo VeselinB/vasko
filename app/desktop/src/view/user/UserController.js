@@ -1,70 +1,10 @@
 
 const selectedUsersIdsArray = [];
 
-// eslint-disable-next-line no-implicit-globals
-function sleepFor(sleepDuration) {
-    const now = new Date().getTime();
-    while (new Date().getTime() < now + sleepDuration) { /* Do nothing */ }
-}
-// eslint-disable-next-line no-implicit-globals
-let retry = 3;
-// eslint-disable-next-line no-implicit-globals
-function retryRemoveRecordFromBackend(id) {
-    retry--;
-    sleepFor(500);
-    Ext.Ajax.request({
-        url: `http://localhost:3000/items/${id}`,
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-
-        success: function () {
-
-            const index = Ext.StoreMgr.lookup('usersStore').find('id', id);
-
-            Ext.StoreManager.lookup('usersStore').removeAt(index);
-
-        },
-
-        failure: function () {
-            if (retry !== 0) {
-
-                retryRemoveRecordFromBackend(id, 3);
-
-            }
-        }
-
-    });
-}
-
 Ext.define('newApp.view.user.UserController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.userscontroller',
-    retryRemoveRecordFromBackend: function(id) {
-        retry--;
-        sleepFor(500);
-        Ext.Ajax.request({
-            url: `http://localhost:3000/items/${id}`,
-            method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' },
-    
-            success: function () {
-    
-                const index = Ext.StoreMgr.lookup('usersStore').find('id', id);
-    
-                Ext.StoreManager.lookup('usersStore').removeAt(index);
-    
-            },
-    
-            failure: function () {
-                if (retry !== 0) {
-    
-                    retryRemoveRecordFromBackend(id, 3);
-    
-                }
-            }
-    
-        });
-    },
+
     selectedUsersIds: function (checkcolumn, rowIndex, checked, record) {
         const id = record.id;
 
@@ -90,7 +30,7 @@ Ext.define('newApp.view.user.UserController', {
     deleteAllSelsectedUsers: function () {
         const dialog = Ext.create({
             xtype: 'dialog',
-            html: '<div style="font-size: 20px; color: red">More than one User are selected!</div> <br/>Are you sure?',
+            html: '<div id="messageAllSelectedDialogUsers"><div  style="font-size: 20px; color: red">More than one User are selected!</div> <br/>Are you sure?</div>',
             buttons: [
                 {
                     text: 'Cancel',
@@ -103,29 +43,40 @@ Ext.define('newApp.view.user.UserController', {
                     cls: 'warn',
 
                     handler: function () {
-                        debugger
-                        const tempArray = [...selectedUsersIdsArray];
+
+                        const promises = [];
+
                         selectedUsersIdsArray.forEach(id => {
                             const user = new Ext.create('newApp.model.User', { id });
-                            return user.erase({
-                                success: function () {
-                                    //debugger;
-                                    const index = tempArray.indexOf(id);
-                                    tempArray.splice(index, 1);
 
-                                    Ext.StoreMgr.lookup('usersStore').reload();
-                                    if (tempArray.length === 0) {
-                                        dialog.destroy();
+
+                            const promise = new Ext.Promise(function (resolve, reject) {
+                                user.erase({
+                                    callback: function (records, operation, success) {
+                                        if (success) {
+                                            Ext.StoreMgr.lookup('usersStore').reload();
+                                           
+                                            resolve(records);
+                                        } else {
+
+                                         
+                                            reject(new Error(id));
+                                        }
                                     }
-
-                                },
-                                failure: function () {
-                                    retryRemoveRecordFromBackend(id);
-                                }
+                                });
                             });
+                            promises.push(promise);
+                 
                         });
 
-                      
+                        Promise.all(promises)
+                            .then(() => dialog.destroy())
+                            .catch(() => {
+                                Ext.get('messageAllSelectedDialogUsers').update('<div  style="font-size: 20px; color: red">Some or all secected users were not been removed!!!</div></br>Choose Ok to Retry or Cancel to close dialog');
+                               
+                            });
+
+
                     }
                 }
             ]
@@ -136,7 +87,7 @@ Ext.define('newApp.view.user.UserController', {
     deleteUser: function (button) {
         const dialog = Ext.create({
             xtype: 'dialog',
-            html: 'Are you sure?',
+            html: '<div id="mesageOneUser">Are you sure?</div>',
             buttons: [
                 {
                     text: 'Cancel',
@@ -158,6 +109,11 @@ Ext.define('newApp.view.user.UserController', {
 
                                 Ext.StoreMgr.lookup('usersStore').reload();
                                 dialog.destroy();
+
+                            },
+                            failure: function () {
+
+                                Ext.get('mesageOneUser').update('<div  style="font-size: 20px; color: red">This User was not been removed!!!</div></br>Choose Ok to Retry or Cancel to close dialog');
 
                             }
                         });
