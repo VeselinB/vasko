@@ -5,5 +5,4 @@ Ext.define('newApp.view.image.ImageViewModel', {
         name: 'imageview',
         title: 'Images',
     },
-
 });

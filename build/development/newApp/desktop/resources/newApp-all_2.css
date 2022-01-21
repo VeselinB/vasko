@@ -7996,6 +7996,10 @@ body {
     color: white !important;
     margin-left: 3px !important;
 }
+/* /Users/veselinb/newP/vasko/vasko/app/desktop/src/view/user/form/UserForm.scss:1 */
+.my-button {
+    background-color: red !important;
+}
 /* /Users/veselinb/newP/vasko/vasko/app/desktop/src/view/user/header/HeaderView.scss:1 */
 .headerview {
     border-left: 0;

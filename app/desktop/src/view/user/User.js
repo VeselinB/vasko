@@ -1,6 +1,6 @@
 Ext.define('newApp.view.user.User', {
     extend: 'Ext.Container',
-    xtype: 'users',
+    xtype: 'usersView',
 
     controller: 'userscontroller',
     viewModel: 'usersviewmodel',
@@ -14,12 +14,13 @@ Ext.define('newApp.view.user.User', {
     items: [
        
         {
-            xtype: 'userheaderview',
+            xtype: 'userHeader',
             docked: 'top'
         },
         {
-            xtype: 'usersgridview',
-            bind: {
+            xtype: 'usersGrid',
+            bind: 
+            {
                 store: 'usersStore',
             }
         },

@@ -1,8 +1,6 @@
 Ext.define('newApp.view.main.Main', {
     extend: 'Ext.TabPanel',
     xtype: 'main',
-
-
     controller: 'mainController',
     viewModel: 'mainViewModel',
 
@@ -13,7 +11,7 @@ Ext.define('newApp.view.main.Main', {
         {
             title: 'Users',
             iconCls: 'x-fa fa-users',
-            xtype: 'users',
+            xtype: 'usersView',
         },
         {
             title: 'Images',

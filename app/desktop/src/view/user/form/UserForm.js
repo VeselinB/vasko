@@ -1,29 +1,24 @@
-
 const emailValidator = Ext.create('Ext.data.validator.Email');
 
 Ext.define('newApp.view.user.form.UserForm', {
     extend: 'Ext.form.Panel',
     xtype: 'userForm',
-    
+
     layout: {
         type: 'vbox',
         align: 'left'
     },
-    
+
     items: [
         {
-          
             xtype: 'textfield',
-       
             name: 'name',
             labelAlign: 'top',
             label: 'Name',
             width: 265,
             allowBlank: false,
-    
             errorTarget: 'under',
             required: true,
-            placeholder: 'Please Enter Something'
         },
         {
             xtype: 'textfield',
@@ -36,8 +31,6 @@ Ext.define('newApp.view.user.form.UserForm', {
             required: true,
             validators: [emailValidator],
             errorTarget: 'under',
-
-
         },
         {
             xtype: 'textfield',
@@ -48,21 +41,13 @@ Ext.define('newApp.view.user.form.UserForm', {
             width: 265,
             allowBlank: false,
             required: true,
+            errorTarget: 'under',
             validators: function (val) {
-                // remove non-numeric characters
-                 console.log(val);
                 const regex = /^[0-9]*$/;
-                console.log(val.match(regex));
                 const errorMessage = 'Must be a digit telephone number';
-                // if the numeric value is not 10 digits return an error message
+
                 return (val.match(regex) === null) ? errorMessage : true;
             },
-            //validators: /^[0-9]*$/,
-            errorTarget: 'under',
-
         },
-      
-       
     ],
-
 });

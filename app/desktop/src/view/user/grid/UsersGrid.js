@@ -1,13 +1,13 @@
 Ext.define('newApp.view.user.grid.Grid', {
     extend: 'Ext.grid.Grid',
-    xtype: 'usersgridview',
-    //scrollable: true,
+    xtype: 'usersGrid',
+    controller: 'usersgrdicontroller',
     grouped: false,
-    id: 'usersGrid',
-    plugins: {
+    id: 'usersGridId',
 
+    plugins:
+    {
         pagingtoolbar: true,
-
     },
 
     columns: [
@@ -17,23 +17,28 @@ Ext.define('newApp.view.user.grid.Grid', {
             dataIndex: 'active',
             width: 20,
             listeners:
-                { checkchange: 'selectedUsersIds' },
-            
-
+            {
+                checkchange: 'selectedUsersIds'
+            },
         },
         {
             text: 'Id',
             dataIndex: 'id',
             editable: true,
             width: 30,
-            cell: { userCls: 'bold' }
+            cell:
+            {
+                userCls: 'bold'
+            }
         },
         {
             text: 'Name',
             dataIndex: 'name',
-
             width: 100,
-            cell: { userCls: 'bold' }
+            cell:
+            {
+                userCls: 'bold'
+            }
         },
         {
             text: 'Email',
@@ -43,58 +48,43 @@ Ext.define('newApp.view.user.grid.Grid', {
         {
             text: 'Phone',
             dataIndex: 'phone',
-
             width: 150
         },
         {
             text: 'Actions',
             iconCls: 'x-fa fa-image',
             flex: 1,
-
             cell: {
                 xtype: 'widgetcell',
                 widget: {
                     xtype: 'button',
-
                     text: '',
-
                     menu: {
                         xtype: 'menu',
-                        items: [{
-                            text: 'Edit this',
-
-                            iconCls: 'x-fa fa-edit',
-                            handler: 'editUserData',
-                            // data: this
-
-
-                        },
-
-                        {
-                            text: 'Delete This',
-                            iconCls: 'x-fa fa-trash',
-                            handler: 'deleteUser',
-
-                        },
-                        {
-                            text: 'Delete All Selected',
-                            iconCls: 'x-fa fa-trash',
-                            handler: 'deleteAllSelsectedUsers',
-                            bind: {
-                                disabled: '{deleteAllButtonDisabled}'
+                        items: [
+                            {
+                                text: 'Edit',
+                                iconCls: 'x-fa fa-edit',
+                                handler: 'saveUser',
+                            },
+                            {
+                                text: 'Delete This',
+                                iconCls: 'x-fa fa-trash',
+                                handler: 'deleteUser',
+                            },
+                            {
+                                text: 'Delete All Selected',
+                                iconCls: 'x-fa fa-trash',
+                                handler: 'deleteAllSelsectedUsers',
+                                bind:
+                                {
+                                    disabled: '{deleteAllButtonDisabled}'
+                                }
                             }
-
-                        }]
-
+                        ]
                     },
-
                 }
             }
-
         },
-
-
     ],
-
-
 });

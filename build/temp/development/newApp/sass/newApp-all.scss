@@ -822,12 +822,10 @@ $include-ext-viewport-viewport: dynamic(true);;
 $include-ext-viewport-wp: dynamic(true);;
 $include-ext-viewport-windowsphone: dynamic(true);;
 $include-ext-window-window: dynamic(true);;
-$include-shared: dynamic(true);;
 $include-newapp-application: dynamic(true);;
 $include-newapp-model-user: dynamic(true);;
 $include-newapp-store-images: dynamic(true);;
 $include-newapp-store-users: dynamic(true);;
-$include-newapp-util-shared: dynamic(true);;
 $include-newapp-view-image-image: dynamic(true);;
 $include-newapp-view-image-imagecontroller: dynamic(true);;
 $include-newapp-view-image-imageviewmodel: dynamic(true);;
@@ -844,6 +842,7 @@ $include-newapp-view-user-dialog-userdialogcontroler: dynamic(true);;
 $include-newapp-view-user-dialog-userdialogviewmodel: dynamic(true);;
 $include-newapp-view-user-form-userform: dynamic(true);;
 $include-newapp-view-user-grid-grid: dynamic(true);;
+$include-newapp-view-user-grid-usersgridcontroller: dynamic(true);;
 $include-newapp-view-user-header-headerview: dynamic(true);;
 $output-paths: ("path": "../../desktop/resources", "shared": "../../resources");
 
@@ -1104,22 +1103,6 @@ $relative-image-path-for-uis: $theme-material-resource-path;
 @import '../../../../../node_modules/@sencha/ext-modern-theme-material/sass/var/panel/Resizer';
 @import '../../../../../node_modules/@sencha/ext-modern-theme-material/sass/var/tab/Tab';
 @import '../../../../../node_modules/@sencha/ext-modern-theme-material/sass/var/tab/Bar';
-
-/* including package newApp */
-$newApp-resource-root: '' !default;
-$newApp-resource-path: 'images' !default;
-$current-package: false;
-$current-resource-root: $newApp-resource-root;
-$relative-image-path-for-uis: $newApp-resource-path;
-@import '../../../../../app/shared/sass/var';
-
-/* including package newApp */
-$newApp-resource-root: '' !default;
-$newApp-resource-path: 'images' !default;
-$current-package: false;
-$current-resource-root: $newApp-resource-root;
-$relative-image-path-for-uis: $newApp-resource-path;
-@import '../../../../../app/desktop/sass/var';
 
 
 /* ======================== RULE ======================== */
@@ -1429,11 +1412,3 @@ $current-package: false;
 $current-resource-root: $default-resource-root;
 $relative-image-path-for-uis: $default-resource-path;
 @import '../../../../../app/desktop/src/Application';
-
-/* including package newApp */
-$newApp-resource-root: '' !default;
-$newApp-resource-path: 'images' !default;
-$current-package: false;
-$current-resource-root: $newApp-resource-root;
-$relative-image-path-for-uis: $newApp-resource-path;
-@import '../../../../../app/desktop/sass/src';

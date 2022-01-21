@@ -12,7 +12,7 @@ Ext.define('newApp.model.User', {
         },
         {
             name: 'phone',
-            // type: 'string'
+            type: 'number'
         },
         {
             name: 'id',
@@ -21,10 +21,10 @@ Ext.define('newApp.model.User', {
     ],
 
     proxy: {
+
         type: 'rest',
-
-        url: 'http://localhost:3000/items',
-
+        url: 'http://localhost:3000/users',
+        
         writer: {
             writeAllFields: true
         }

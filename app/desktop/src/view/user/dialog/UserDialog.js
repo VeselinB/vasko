@@ -14,8 +14,6 @@ Ext.define('newApp.view.user.dialog.UserDialog', {
     items: [
         {
             xtype: 'userForm',
-
-
         }
     ],
     buttons: [
@@ -24,28 +22,22 @@ Ext.define('newApp.view.user.dialog.UserDialog', {
             handler: function () {
                 this.up('userDialog').destroy();
             }
-            // TODO test with this / bind
-
-        }, 
-        {
-
-
-            text: 'SAVE',
-            handler: 'setEditedData',
-            bind: {
-                hidden: '{!editMode}'
-            }
-
         },
         {
-
-
+            text: 'SAVE',
+            handler: 'setEditedData',
+            bind:
+            {
+                hidden: '{!editMode}'
+            }
+        },
+        {
             text: 'ADD',
             handler: 'saveUser',
-            bind: {
+            bind:
+            {
                 hidden: '{editMode}'
             }
-
         }
     ]
 });

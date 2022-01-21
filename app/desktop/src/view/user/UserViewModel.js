@@ -5,8 +5,6 @@ Ext.define('newApp.view.user.UserViewModel', {
     stores: {
         usersStore: {
             type: 'users',
-          
-			
         }
     },
 
@@ -14,11 +12,4 @@ Ext.define('newApp.view.user.UserViewModel', {
         deleteAllButtonDisabled: true,
         title: 'Users'
     },
-	
-    constructor: function() {
-        this.callParent(arguments);
-
-        console.log(this.getParent().type);
-    }
- 
 });

@@ -1,20 +1,16 @@
 Ext.define('newApp.view.image.Image', {
     xtype: 'image',
-    // cls: 'imageview',
-
     controller: 'imagecontroller',
     viewModel: 'imageviewmodel',
-
     extend: 'Ext.Container',
+    layout: 'fit',
+
     requires: [
         'Ext.layout.Fit'
     ],
-    layout: 'fit',
+
     items: [
-
-        { xtype: 'imageheaderview', docked: 'top' },
-
-        { xtype: 'imageslist'},
-
+        { xtype: 'imageHeaderView', docked: 'top' },
+        { xtype: 'imagesList'},
     ]
 });

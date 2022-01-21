@@ -1,7 +1,6 @@
 Ext.define('newApp.view.user.header.HeaderView', {
     extend: 'Ext.Toolbar',
-
-    xtype: 'userheaderview',
+    xtype: 'userHeader',
     cls: 'headerview',
 
     items: [
@@ -12,12 +11,9 @@ Ext.define('newApp.view.user.header.HeaderView', {
         },
         '->',
         {
-
             xtype: 'button',
-            //  bind: { hidden: '{hide_button}' },
             ui: 'headerbutton',
-            //reference: 'detailtoggle',
-            handler: 'createNewUser',
+            handler: 'setUser',
             iconCls: 'x-fa fa-plus'
         }
     ]
