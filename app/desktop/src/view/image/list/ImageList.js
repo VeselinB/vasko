@@ -16,6 +16,7 @@ Ext.define('newApp.view.image.list.ImageList', {
 
     initialize: function () {
         const plugin = this.findPlugin('listpaging');
+      
         plugin.setAutoPaging(true);
         plugin.setBufferZone(0);
 

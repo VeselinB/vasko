@@ -78,7 +78,7 @@ Ext.define('newApp.view.user.grid.Grid', { //TODO If this is the only grid for u
                             {
                                 text: 'Delete All Selected',
                                 iconCls: 'x-fa fa-trash',
-                                handler: 'deleteAllSelsectedUsers',
+                                handler: 'deleteAllSelectedUsers',
                                 bind:
                                 {
                                     disabled: '{deleteAllButtonDisabled}'

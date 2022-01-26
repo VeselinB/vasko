@@ -1,14 +1,9 @@
 Ext.define('newApp.store.Images', {
     extend: 'Ext.data.Store',
     alias: 'store.imagesviewstore',
-    //TODO Create model for Image, and move fields there :)
-
-    fields: [
-        'url'
-    ],
-
+    model: 'newApp.model.Image',
     storeId: 'imagesStore',
-    groupField: 'dept',
+
 
     proxy: {
         type: 'rest',
@@ -24,6 +19,6 @@ Ext.define('newApp.store.Images', {
         }
     },
 
-    pageSize: 25,
+    pageSize: 10,
     autoLoad: true
 });

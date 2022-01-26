@@ -23,8 +23,7 @@ Ext.define('newApp.view.user.grid.UsersGridController', {
 
     },
 
-    deleteAllSelsectedUsers: function () { //TODO typo in function name
-
+    deleteAllSelectedUsers: function () { 
         const dialog = Ext.create({
             xtype: 'dialog',
             html: '<div id="messageAllSelectedDialogUsers"><div  style="font-size: 20px; color: red">More than one User are selected!</div> <br/>Are you sure?</div>',
@@ -73,7 +72,8 @@ Ext.define('newApp.view.user.grid.UsersGridController', {
         dialog.show();
     },
 
-    deleteUser: function (button) { //TODO Refactor this - way complex structure: You are creating a dialog within a Grid and inside it you are creating a buttons with handlers
+    deleteUser: function (button) {
+    //TODO Refactor this - way complex structure: You are creating a dialog within a Grid and inside it you are creating a buttons with handlers
         const dialog = Ext.create({
             xtype: 'dialog',
             html: '<div id="mesageOneUser">Are you sure?</div>',

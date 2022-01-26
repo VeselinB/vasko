@@ -1,4 +1,4 @@
-Ext.define('newApp.view.user.header.HeaderView', { //TODO Inconsistent name - xtype, and if there is a single header in user tab better to move it to newApp.view.user and remove the header folder
+Ext.define('newApp.view.user.header.UserHeaderView', { //TODO Inconsistent name - xtype, and if there is a single header in user tab better to move it to newApp.view.user and remove the header folder
     extend: 'Ext.Toolbar',
     xtype: 'userHeader',
 

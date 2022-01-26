@@ -4,9 +4,6 @@ Ext.define('newApp.view.main.Main', {
 
     //TODO Require used components/controller/viewModel
 
-    controller: 'mainController', //TODO No functionality - so not needed :)
-    viewModel: 'mainViewModel', //TODO No functionality - so not needed :)
-
     fullscreen: true,
     tabBarPosition: 'bottom',
    
