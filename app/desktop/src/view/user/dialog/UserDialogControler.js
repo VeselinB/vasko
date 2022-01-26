@@ -1,4 +1,4 @@
-Ext.define('newApp.view.user.dialog.UserDialogControler', {
+Ext.define('newApp.view.user.dialog.UserDialogControler', { //TODO Typo in name
     extend: 'Ext.app.ViewController',
     alias: 'controller.userDialogController',
 
@@ -29,8 +29,10 @@ Ext.define('newApp.view.user.dialog.UserDialogControler', {
             const user = new Ext.create('newApp.model.User', {
                 ...form.getValues()
             });
+
             delete user.id;
             delete user.data.id;
+
             user.save(
                 {
                     success: function () {

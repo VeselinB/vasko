@@ -1,8 +1,11 @@
 Ext.define('newApp.view.main.Main', {
     extend: 'Ext.TabPanel',
     xtype: 'main',
-    controller: 'mainController',
-    viewModel: 'mainViewModel',
+
+    //TODO Require used components/controller/viewModel
+
+    controller: 'mainController', //TODO No functionality - so not needed :)
+    viewModel: 'mainViewModel', //TODO No functionality - so not needed :)
 
     fullscreen: true,
     tabBarPosition: 'bottom',

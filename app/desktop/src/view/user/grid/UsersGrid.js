@@ -1,12 +1,15 @@
-Ext.define('newApp.view.user.grid.Grid', {
+Ext.define('newApp.view.user.grid.Grid', { //TODO If this is the only grid for user part of the project - you can easily move it to newApp.view.user and remove the grid folder
     extend: 'Ext.grid.Grid',
     xtype: 'usersGrid',
+
+    //TODO Require used components/controller/viewModel
+
     controller: 'usersgrdicontroller',
+
     grouped: false,
     id: 'usersGridId',
 
-    plugins:
-    {
+    plugins: {
         pagingtoolbar: true,
     },
 

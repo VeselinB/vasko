@@ -8,30 +8,22 @@ Ext.define('newApp.view.user.grid.UsersGridController', {
         const id = record.id;
 
         if (checked) {
-
             selectedUsersIdsArray.push(id);
-
         } else {
-
             const index = selectedUsersIdsArray.indexOf(id);
             selectedUsersIdsArray.splice(index, 1);
-
         }
 
         if (selectedUsersIdsArray.length !== 0) {
-
             this.getViewModel().set('deleteAllButtonDisabled', false);
-
         } else {
-
             this.getViewModel().set('deleteAllButtonDisabled', true);
-
         }
 
 
     },
 
-    deleteAllSelsectedUsers: function () {
+    deleteAllSelsectedUsers: function () { //TODO typo in function name
 
         const dialog = Ext.create({
             xtype: 'dialog',
@@ -71,7 +63,7 @@ Ext.define('newApp.view.user.grid.UsersGridController', {
                         Promise.all(promises)
                             .then(() => dialog.destroy())
                             .catch(() => {
-                                Ext.get('messageAllSelectedDialogUsers').update('<div  style="font-size: 20px; color: red">Some or all secected users were not been removed!!!</div></br>Choose Ok to Retry or Cancel to close dialog');
+                                Ext.get('messageAllSelectedDialogUsers').update('<div  style="font-size: 20px; color: red">Some or all selected users were not been removed!!!</div></br>Choose Ok to Retry or Cancel to close dialog');
                             });
                     }
                 }
@@ -81,7 +73,7 @@ Ext.define('newApp.view.user.grid.UsersGridController', {
         dialog.show();
     },
 
-    deleteUser: function (button) {
+    deleteUser: function (button) { //TODO Refactor this - way complex structure: You are creating a dialog within a Grid and inside it you are creating a buttons with handlers
         const dialog = Ext.create({
             xtype: 'dialog',
             html: '<div id="mesageOneUser">Are you sure?</div>',

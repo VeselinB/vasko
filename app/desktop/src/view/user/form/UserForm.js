@@ -1,6 +1,6 @@
 const emailValidator = Ext.create('Ext.data.validator.Email');
 
-Ext.define('newApp.view.user.form.UserForm', {
+Ext.define('newApp.view.user.form.UserForm', { //TODO If this is the only form for user part of the project - you can easily move it to newApp.view.user and remove the form folder
     extend: 'Ext.form.Panel',
     xtype: 'userForm',
 
@@ -8,6 +8,14 @@ Ext.define('newApp.view.user.form.UserForm', {
         type: 'vbox',
         align: 'left'
     },
+
+    //TODO You can use defaults here for the configs are the same for all items of the panel, and remove them from the items object:
+    // defaults: {
+    //      xtype: 'textfield',
+    //      labelAlign: 'top',
+    //      width: 265,
+    //      ...
+    // }
 
     items: [
         {

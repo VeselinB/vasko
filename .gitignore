@@ -1,1 +1,9 @@
 /node_modules
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/.gitignore
+/.idea/modules.xml
+/.idea/vasko.iml
+/.idea/vcs.xml
+/.idea/watcherTasks.xml
+/build/
+/generatedFiles/

@@ -1,6 +1,6 @@
 Ext.define('newApp.view.user.UserController', {
     extend: 'Ext.app.ViewController',
-    alias: 'controller.userscontroller',
+    alias: 'controller.userscontroller', //TODO use camel case for xtype
 
 
     setUser: function () {
