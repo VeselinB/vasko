@@ -1,9 +1,12 @@
-Ext.define('newApp.view.image.ImageViewModel', {
+Ext.define('newApp.view.image.imageViewModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.imageviewmodel', //TODO Fix camel case xtype
-
-    data: {
-        name: 'imageview', //TODO Check if we use this
-        title: 'Images', //TODO Probably will be better to hardcode this in the component, and remove the ViewModel entirely, if it became the single variable here
+    alias: 'viewmodel.imageViewModel', 
+    requires: [
+        'newApp.store.Images'
+    ],
+    stores: {
+        imagesStore: {
+            type: 'images',
+        }
     },
 });

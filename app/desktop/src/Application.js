@@ -1,7 +1,10 @@
 Ext.define('newApp.Application', {
     extend: 'Ext.app.Application',
     name: 'newApp',
-    requires: ['newApp.*'],
+    // requires: ['newApp.*'], 
+    requires: [
+        'newApp.view.main.Main'
+    ],
     defaultToken: 'imageview',
 
     removeSplash: function () {

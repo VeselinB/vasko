@@ -1,15 +1,12 @@
-Ext.define('newApp.view.image.list.ImageList', {
+Ext.define('newApp.view.image.ImageList', {
     extend: 'Ext.dataview.List',
     xtype: 'imagesList',
 
-    //TODO You can move the store in the ImageView, and bind it to the component
-    store: {
-        type: 'imagesviewstore'
-    },
-
     itemTpl: '<img src="{url}"  width="100" height="100">',
     grouped: false,
-
+    requires: [
+        'Ext.dataview.plugin.ListPaging'
+    ],
     plugins: {
         listpaging: true,
     },
@@ -19,6 +16,7 @@ Ext.define('newApp.view.image.list.ImageList', {
       
         plugin.setAutoPaging(true);
         plugin.setBufferZone(0);
+       
 
     }
 });

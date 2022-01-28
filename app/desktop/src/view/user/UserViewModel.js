@@ -1,6 +1,6 @@
 Ext.define('newApp.view.user.UserViewModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.usersviewmodel', //TODO use camel case for xtype
+    alias: 'viewmodel.usersViewModel', 
 
     stores: {
         usersStore: {
@@ -9,7 +9,9 @@ Ext.define('newApp.view.user.UserViewModel', {
     },
 
     data: {
+
         deleteAllButtonDisabled: true,
-        title: 'Users' //TODO If we only use this in the header, a better approach is to hardcode it there :)
+   
+      
     },
 });

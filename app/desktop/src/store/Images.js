@@ -1,6 +1,6 @@
 Ext.define('newApp.store.Images', {
     extend: 'Ext.data.Store',
-    alias: 'store.imagesviewstore',
+    alias: 'store.images',
     model: 'newApp.model.Image',
     storeId: 'imagesStore',
 
@@ -16,9 +16,9 @@ Ext.define('newApp.store.Images', {
         reader: {
             rootProperty: 'items',
             totalProperty: 'totalCount',
+            implicitIncludes: false
         }
     },
-
-    pageSize: 10,
+    pageSize: 20,
     autoLoad: true
 });

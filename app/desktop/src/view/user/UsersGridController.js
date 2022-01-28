@@ -1,18 +1,14 @@
-const selectedUsersIdsArray = [];
+let selectedUsersIdsArray = [];
 
 Ext.define('newApp.view.user.grid.UsersGridController', {
     extend: 'Ext.app.ViewController',
-    alias: 'controller.usersgrdicontroller',
+    alias: 'controller.usersGridController',
+    requires: [
+        'newApp.view.user.UserDialog'
+    ],
+    selectedUsersIds: function () {
 
-    selectedUsersIds: function (checkcolumn, rowIndex, checked, record) {
-        const id = record.id;
-
-        if (checked) {
-            selectedUsersIdsArray.push(id);
-        } else {
-            const index = selectedUsersIdsArray.indexOf(id);
-            selectedUsersIdsArray.splice(index, 1);
-        }
+        selectedUsersIdsArray = this.getView().getSelections().reduce((acc, curVal) => [...acc, curVal.id], []);
 
         if (selectedUsersIdsArray.length !== 0) {
             this.getViewModel().set('deleteAllButtonDisabled', false);
@@ -23,7 +19,9 @@ Ext.define('newApp.view.user.grid.UsersGridController', {
 
     },
 
-    deleteAllSelectedUsers: function () { 
+    deleteAllSelectedUsers: function () {
+        // debugger;
+        selectedUsersIdsArray = this.getView().getSelections().reduce((acc, curVal) => [...acc, curVal.id], []);
         const dialog = Ext.create({
             xtype: 'dialog',
             html: '<div id="messageAllSelectedDialogUsers"><div  style="font-size: 20px; color: red">More than one User are selected!</div> <br/>Are you sure?</div>',
@@ -40,6 +38,7 @@ Ext.define('newApp.view.user.grid.UsersGridController', {
                     handler: function () {
                         const promises = [];
 
+                        const vm = Ext.getCmp('usersGridId').getViewModel();
                         selectedUsersIdsArray.forEach(id => {
                             const user = new Ext.create('newApp.model.User', { id });
                             const promise = new Ext.Promise(function (resolve, reject) {
@@ -48,6 +47,7 @@ Ext.define('newApp.view.user.grid.UsersGridController', {
 
                                         if (success) {
                                             Ext.StoreMgr.lookup('usersStore').reload();
+
                                             resolve(records);
                                         } else {
                                             reject(new Error(id));
@@ -60,7 +60,12 @@ Ext.define('newApp.view.user.grid.UsersGridController', {
                         });
 
                         Promise.all(promises)
-                            .then(() => dialog.destroy())
+                            .then(() => {
+
+                                selectedUsersIdsArray.length = 0;
+                                vm.set('deleteAllButtonDisabled', true);
+                                dialog.destroy();
+                            })
                             .catch(() => {
                                 Ext.get('messageAllSelectedDialogUsers').update('<div  style="font-size: 20px; color: red">Some or all selected users were not been removed!!!</div></br>Choose Ok to Retry or Cancel to close dialog');
                             });
@@ -73,41 +78,11 @@ Ext.define('newApp.view.user.grid.UsersGridController', {
     },
 
     deleteUser: function (button) {
-    //TODO Refactor this - way complex structure: You are creating a dialog within a Grid and inside it you are creating a buttons with handlers
+
         const dialog = Ext.create({
-            xtype: 'dialog',
-            html: '<div id="mesageOneUser">Are you sure?</div>',
-            buttons: [
-                {
-                    text: 'Cancel',
-                    handler: function () {
-                        dialog.destroy();
-                    }
-                },
-                {
-                    text: 'Ok',
-                    cls: 'warn',
-                    handler: function () {
-                        const id = button.up('gridrow').getRecord().get('id');
-                        const user = new Ext.create('newApp.model.User', { id });
+            xtype: 'userWarnDialog',
+            userSelectedId: button.up('gridrow').getRecord().get('id')
 
-                        user.erase({
-                            success: function () {
-
-                                Ext.StoreMgr.lookup('usersStore').reload();
-                                dialog.destroy();
-
-                            },
-                            failure: function () {
-
-                                Ext.get('mesageOneUser').update('<div  style="font-size: 20px; color: red">This User was not been removed!!!</div></br>Choose Ok to Retry or Cancel to close dialog');
-
-                            }
-                        });
-
-                    }
-                }
-            ]
         });
 
         dialog.show();
@@ -115,7 +90,7 @@ Ext.define('newApp.view.user.grid.UsersGridController', {
 
     saveUser: function (button) {
 
-        const dialog = new Ext.create('newApp.view.user.dialog.UserDialog');
+        const dialog = new Ext.create('newApp.view.user.UserDialog');
         const record = button.up('gridrow').getRecord();
         const form = dialog.down('userForm');
 

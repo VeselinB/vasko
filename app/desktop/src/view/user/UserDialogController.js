@@ -1,4 +1,4 @@
-Ext.define('newApp.view.user.dialog.UserDialogController', { //TODO Typo in name
+Ext.define('newApp.view.user.UserDialogController', { 
     extend: 'Ext.app.ViewController',
     alias: 'controller.userDialogController',
 

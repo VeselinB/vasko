@@ -1,10 +1,18 @@
-Ext.define('newApp.view.user.grid.Grid', { //TODO If this is the only grid for user part of the project - you can easily move it to newApp.view.user and remove the grid folder
+Ext.define('newApp.view.user.Grid', {
     extend: 'Ext.grid.Grid',
     xtype: 'usersGrid',
+    viewModel: 'usersViewModel',
 
-    //TODO Require used components/controller/viewModel
 
-    controller: 'usersgrdicontroller',
+    requires: [
+        'Ext.grid.plugin.PagingToolbar',
+        'newApp.view.user.grid.UsersGridController',
+        'newApp.view.user.UserViewModel'
+
+
+    ],
+
+    controller: 'usersGridController',
 
     grouped: false,
     id: 'usersGridId',
@@ -15,19 +23,8 @@ Ext.define('newApp.view.user.grid.Grid', { //TODO If this is the only grid for u
 
     columns: [
         {
-            xtype: 'checkcolumn',
-            text: '',
-            dataIndex: 'active',
-            width: 20,
-            listeners:
-            {
-                checkchange: 'selectedUsersIds'
-            },
-        },
-        {
             text: 'Id',
             dataIndex: 'id',
-            editable: true,
             width: 30,
             cell:
             {
@@ -59,7 +56,9 @@ Ext.define('newApp.view.user.grid.Grid', { //TODO If this is the only grid for u
             flex: 1,
             cell: {
                 xtype: 'widgetcell',
+                
                 widget: {
+                  
                     xtype: 'button',
                     text: '',
                     menu: {
@@ -84,10 +83,22 @@ Ext.define('newApp.view.user.grid.Grid', { //TODO If this is the only grid for u
                                     disabled: '{deleteAllButtonDisabled}'
                                 }
                             }
-                        ]
+                        ],
+                        listeners: {
+                            show: 'selectedUsersIds'
+                        },
                     },
                 }
             }
         },
     ],
+    selectable: {
+        columns: false,
+        cells: false,
+        checkbox: true,
+        checkboxColumnIndex: 0,
+        checkboxSelect: true,
+        headerCheckbox: true,
+        mode: 'multi',
+    },
 });

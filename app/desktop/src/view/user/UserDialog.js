@@ -1,8 +1,13 @@
-Ext.define('newApp.view.user.dialog.UserDialog', { //TODO Since this is the only dialog for the user part, you can easily move it to the newApp.view.user and remove the dialog folder
+Ext.define('newApp.view.user.UserDialog', { 
     extend: 'Ext.window.Window',
     xtype: 'userDialog',
 
     //TODO Require used components/controller/viewModel
+    requires: [
+        'newApp.view.user.UserDialogController',
+        'newApp.view.user.UserForm',
+        'newApp.view.user.UserDialogViewModel'
+    ],
 
     modal: true,
    

@@ -1,16 +1,17 @@
 Ext.define('newApp.view.image.Images', { 
     extend: 'Ext.Container',
-    xtype: 'image',
+    xtype: 'images',
 
-    viewModel: 'imageviewmodel',
+    viewModel: 'imageViewModel',
     layout: 'fit',
 
     requires: [
         'Ext.layout.Fit',
-        // 'newApp.view.image.imageViewModel',
-        // 'newApp.view.image.imageController',
-        // 'newApp.view.image.list.imageList',
-        //TODO
+        'newApp.view.image.imageViewModel',
+        'newApp.view.image.ImagesHeaderView',
+        'newApp.view.image.ImageList'
+  
+     
     ],
 
     items: [
@@ -19,7 +20,10 @@ Ext.define('newApp.view.image.Images', {
             docked: 'top'
         },
         {
-            xtype: 'imagesList'
+            xtype: 'imagesList',
+            bind: {
+                store: 'imagesStore',
+            }
         }
     ]
 });

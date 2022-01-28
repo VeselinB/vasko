@@ -2,11 +2,15 @@ Ext.define('newApp.view.main.Main', {
     extend: 'Ext.TabPanel',
     xtype: 'main',
 
-    //TODO Require used components/controller/viewModel
+  
+    requires: [
+        'newApp.view.user.User',
+        'newApp.view.image.Images'
 
+    ],
     fullscreen: true,
     tabBarPosition: 'bottom',
-   
+
     items: [
         {
             title: 'Users',
@@ -16,7 +20,7 @@ Ext.define('newApp.view.main.Main', {
         {
             title: 'Images',
             iconCls: 'x-fa fa-images',
-            xtype: 'image'
+            xtype: 'images'
         }
     ]
 });

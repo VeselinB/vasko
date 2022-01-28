@@ -1,14 +1,15 @@
 Ext.define('newApp.view.user.User', {
     extend: 'Ext.Container',
     xtype: 'usersView',
-
-    //TODO Require used components/controller/viewModel
-
-    controller: 'userscontroller',
-    viewModel: 'usersviewmodel',
+    controller: 'usersController',
+    viewModel: 'usersViewModel',
     
     requires: [
-        'Ext.layout.Fit'
+        'Ext.layout.Fit',
+        'newApp.view.user.userHeaderView',
+        'newApp.view.user.Grid',
+        'newApp.view.user.UserController',
+        'newApp.view.user.UserViewModel'
     ],
 
     layout: 'fit',
@@ -16,7 +17,7 @@ Ext.define('newApp.view.user.User', {
     items: [
        
         {
-            xtype: 'userHeader',
+            xtype: 'userHeaderView',
             docked: 'top'
         },
         {
